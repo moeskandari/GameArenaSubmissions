@@ -17,7 +17,7 @@ public class Particle {
 
     public void physics_process() {
         // System.out.println(m_x + " " + m_y);
-        System.out.println(x + " " + y);
+        // System.out.println(x + " " + y);
         x = x + m_x / 4;
         y = y + m_y / 4;
         p.setXPosition(x);

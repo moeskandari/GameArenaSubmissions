@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Game {
+public class Game{
     static GameArena arena = new GameArena(1450, 1000);
     static Level level = new Level(arena);
     static Bird player = new Bird(700, 850);
@@ -71,8 +71,8 @@ public class Game {
                                 (int) (player.getMomentumY(arena) * -(player.getGun().getPower() * dist)));
 
                         player.getGun().fire();
-                        System.out.println(player.getMomentumX(arena) + " " +
-                                player.getMomentumY(arena));
+                        // System.out.println(player.getMomentumX(arena) + " " +
+                        // player.getMomentumY(arena));
 
                         s_bar.updateShells(player.getGun().numShells());
 

@@ -57,7 +57,7 @@ public class Level {
     }
 
     public Platform[] getPlatforms() {
-        return platformsList.toArray(new Platform[0]); // Convert the ArrayList back to an array if needed
+        return platformsList.toArray(new Platform[0]);
     }
 
     public void next(GameArena gameArena, FakeDoor f_door, Door door) {
