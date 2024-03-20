@@ -37,6 +37,7 @@ public class Bird {
         this.y = y;
     }
 
+    // flips bird based on mouse position
     public void updateDirection(GameArena arena) {
         if (arena.getMousePositionX() < this.x) {
             this.direction = 1;
@@ -82,14 +83,21 @@ public class Bird {
         top_collision.setYPosition(y - 5);
     }
 
+    // physics things
     public void physics_process(Platform[] platforms) {
+        // if going up
         if (m_y > 0) {
+            // for each incremental movement. this stops the bird from getting stuck within
+            // the block
             for (int i = 0; i < m_y; i++) {
+                // if not colliding, increment position
                 if (!isCollidingBelow(platforms)) {
                     y++;
                     setHitboxPositions();
                 } else {
+                    // if it is colliding
                     if (isCollidingBelow(platforms)) {
+                        // update momentum
                         if (m_y - M_LOSS_V < 0) {
                             m_y = 0;
                         } else {
@@ -99,7 +107,9 @@ public class Bird {
                     }
                 }
             }
-        } else {
+        }
+        // same as previous but for going down.
+        else {
             for (int i = 0; i > m_y; i--) {
                 if (!isCollidingAbove(platforms)) {
                     y--;
@@ -117,6 +127,7 @@ public class Bird {
             }
         }
 
+        // if going right, basicvaly same logic as above, wont write duplicate comments
         if (m_x > 0) {
             for (int i = 0; i < m_x; i++) {
                 if (!isCollidingRight(platforms)) {
@@ -161,6 +172,8 @@ public class Bird {
         }
     }
 
+    // checks all platforms and returns wether bird is coliding with any (main
+    // hitbox).
     public boolean is_colliding(Platform[] platforms) {
         for (Platform i : platforms) {
             if (i.getPlatform().collides(collision)) {
@@ -170,10 +183,12 @@ public class Bird {
         return false;
     }
 
+    // checks collision from the sides
     public boolean isCollidingSide(Platform[] platforms) {
         return isCollidingLeft(platforms) || isCollidingRight(platforms);
     }
 
+    // checks collision from above
     public boolean isCollidingAbove(Platform[] platforms) {
         for (Platform i : platforms) {
             if (i.getPlatform().collides(top_collision)) {
@@ -183,6 +198,7 @@ public class Bird {
         return false;
     }
 
+    // collsion detection (left)
     public boolean isCollidingLeft(Platform[] platforms) {
         for (Platform i : platforms) {
             if (i.getPlatform().collides(left_collision)) {
@@ -192,6 +208,7 @@ public class Bird {
         return false;
     }
 
+    // collsion detection (right)
     public boolean isCollidingRight(Platform[] platforms) {
         for (Platform i : platforms) {
             if (i.getPlatform().collides(right_collision)) {
@@ -201,6 +218,7 @@ public class Bird {
         return false;
     }
 
+    // collsion detection (below)
     public boolean isCollidingBelow(Platform[] platforms) {
         for (Platform i : platforms) {
             if (i.getPlatform().collides(floor_collision)) {

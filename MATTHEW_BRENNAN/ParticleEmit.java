@@ -21,10 +21,12 @@ public class ParticleEmit {
     }
 
     public void physics_process(GameArena gameArena) {
+        //for all particles
         for (int i = 0; i < pList.size(); i++) {
             Particle p = pList.get(i);
             if (p != null) {
                 p.physics_process();
+                //if deathCount at zero we delete the particle.
                 if (p.getDeaths() < 0) {
                     gameArena.removeRectangle(p.getRect());
                     pList.remove(p);

@@ -12,7 +12,7 @@ public class StatsBar {
     }
 
     public void updateShells(int count) {
-        shellCount.setText("SHELLS: " + count);
+        shellCount.setText("SHELLS: " + (count - 1));
     }
 
     public void updateDeaths(int count) {
@@ -22,4 +22,5 @@ public class StatsBar {
     public void updateFloor(int count) {
         levelCount.setText("FLOOR: " + count);
     }
+
 }
