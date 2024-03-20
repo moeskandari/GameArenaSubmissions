@@ -10,7 +10,7 @@ public class Gun {
     private Rectangle r_2 = new Rectangle(250, 150, 5, 7, "ALPHARED", 10);
     private Rectangle r_3 = new Rectangle(250, 150, 5, 7, "ALPHARED", 10);
 
-    private int MAX_SHELLS = 10;
+    private int MAX_SHELLS = 11;
     private int shells = MAX_SHELLS;
     private double power = 0.85;
     private int MAX_RANGE = 30;
@@ -38,11 +38,12 @@ public class Gun {
         pivotRect(b_x, b_y, 25, g_2, arena);
         pivotRect(b_x, b_y, 30, g_3, arena);
 
-        pivotRect(b_x, b_y, 80, r_1, arena);
-        pivotRect(b_x, b_y, 130, r_2, arena);
-        pivotRect(b_x, b_y, 180, r_3, arena);
+        // pivotRect(b_x, b_y, 80, r_1, arena);
+        // pivotRect(b_x, b_y, 130, r_2, arena);
+        // pivotRect(b_x, b_y, 180, r_3, arena);
     }
 
+    // moves rect in a circle around the player, relative to mouse postion
     public void pivotRect(int b_x, int b_y, int offset, Rectangle rect, GameArena arena) {
         double rot = getAngle(b_x, b_y, arena);
         double dist = offset;

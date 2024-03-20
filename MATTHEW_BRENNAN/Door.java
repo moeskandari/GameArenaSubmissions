@@ -9,6 +9,7 @@ public class Door {
         return door;
     }
 
+    // checks wether the bird is inside of the door.
     public boolean checkEntry(Bird bird, Level level, GameArena gameArena) {
         if (bird.getCollision().collides(door)) {
             return true;

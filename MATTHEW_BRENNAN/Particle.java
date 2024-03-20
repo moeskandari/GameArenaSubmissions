@@ -15,9 +15,9 @@ public class Particle {
         this.deathCount = deathCount;
     }
 
+    //move and shrink.
+    //when deathCount gets to zero gets deleted
     public void physics_process() {
-        // System.out.println(m_x + " " + m_y);
-        // System.out.println(x + " " + y);
         x = x + m_x / 4;
         y = y + m_y / 4;
         p.setXPosition(x);
