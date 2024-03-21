@@ -12,7 +12,7 @@ public class Menu {
     
     public Menu()
     {
-        menu.setBackgroundImage("catTitle.jpeg");
+        menu.setBackgroundImage("TOBY_CLARK/catTitle.jpeg");
         menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         menu.addText(playText);
         menu.addText(currentLevelText);
