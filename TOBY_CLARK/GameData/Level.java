@@ -1,32 +1,40 @@
+package GameData;
+import GameObjects.Background;
+import GameObjects.Mice;
+import GameObjects.Bullets;
+import GameObjects.Battery;
+import GameObjects.Cat;
+import GameArena.GameArena;
+import GameArena.Rectangle;
+import GameArena.Text;
 import javax.swing.JFrame;
+import static GameData.GameSettings.WINDOW_SIZE;
+import static GameData.GameSettings.HEADER_SIZE;
+import static GameData.GameSettings.OBJ_SIZE;
+import static GameData.GameSettings.CAT_SIZE;
 
 public class Level{
-    private GameArena arena = new GameArena(1000, 1050);
+    private final GameArena arena = new GameArena(WINDOW_SIZE, WINDOW_SIZE+HEADER_SIZE);
     private Background background = new Background();
-    private Mice mice;
-    private Bullets bullets;
-    private Battery battery = new Battery();
-    private Cat cat = new Cat(0, 900);
-    private Rectangle juiceBar = new Rectangle(750, 0, 250, 25, "RED", 1);
-    private Rectangle juiceBarBackground = new Rectangle(750, 0, 250, 25, "WHITE", 0);
-    private Text scoreText = new Text("Score: " + cat.getScore(), 44, 0, 44, "WHITE", 1); 
-    private Text levelText;
-    private boolean haveWon = false;    
-
+    private final Mice mice;
+    private final Bullets bullets;
+    private final Battery battery = new Battery();
+    private final Cat cat = new Cat(0, WINDOW_SIZE-CAT_SIZE);
+    private final Rectangle juiceBar = new Rectangle(WINDOW_SIZE - ((double) WINDOW_SIZE /4), 0, (double) WINDOW_SIZE /4, 25, "RED", 1);
+    private Rectangle juiceBarBackground = new Rectangle(WINDOW_SIZE - ((double) WINDOW_SIZE /4), 0, (double) WINDOW_SIZE /4, 25, "WHITE", 0);
+    private final Text scoreText = new Text("Score: " + cat.getScore(), 44, 0, 44, "WHITE", 1);
+    private boolean haveWon = false;
     public Level(String levelName, int numBullets, int bulletSize, double bulletSpeed, int miceCount) {
         arena.setName(levelName);
         arena.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         background.addTo(arena);
         mice = new Mice(arena, miceCount);
         bullets = new Bullets(arena, numBullets, bulletSize);
-        bullets.increaseBulletSpeed(bulletSpeed+1);
         battery.addTo(arena);
         cat.addTo(arena);
         arena.addRectangle(juiceBar);
-        arena.addRectangle(juiceBarBackground); 
+        arena.addRectangle(juiceBarBackground);
         arena.addText(scoreText);
-        levelText = new Text(levelName, 44, 400, 44, "WHITE");
-        arena.addText(levelText);
     }
 
     public void won(){
@@ -42,11 +50,11 @@ public class Level{
             arena.pause();
             cat.update();
             bullets.updateBullets();
-            juiceBar.setXPosition(1000 - cat.getJuice() * 2.5);
+            juiceBar.setXPosition(WINDOW_SIZE - ((cat.getJuice()/100) * WINDOW_SIZE/4));
             if(mice.checkCollision(cat.hitbox))
             {
                 cat.scored();
-                bullets.increaseBulletSpeed(0.2);
+                bullets.increaseBulletSpeed(2);
                 scoreText.setText("Score: " + cat.getScore());
                 if(cat.getScore() == mice.getMouseCount())
                 {
@@ -76,7 +84,6 @@ public class Level{
             }
             if(bullets.checkCollision(cat.hitbox)) // if hit by bullet
             {
-                System.out.println("cat died");
                 cat.died();
                 break;
             }

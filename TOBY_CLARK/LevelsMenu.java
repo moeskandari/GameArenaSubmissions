@@ -1,4 +1,7 @@
 import javax.swing.JFrame;
+import GameArena.Text;
+import GameArena.GameArena;
+import GameData.LevelData;
 
 public class LevelsMenu {
     GameArena levelMenu = new GameArena(500, 500);
@@ -11,8 +14,7 @@ public class LevelsMenu {
     {
         levelMenu.setBackgroundImage("cat.jpeg");
         levelMenu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        levelMenu.addText(leftText);
-        levelMenu.addText(rightText);
+        levelMenu.addText(leftText);        levelMenu.addText(rightText);
         levelMenu.addText(currentLevelText);
     }
     

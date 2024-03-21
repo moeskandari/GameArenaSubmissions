@@ -1,3 +1,4 @@
+package GameData;
 public class LevelData {
     public static boolean level1()
     {
