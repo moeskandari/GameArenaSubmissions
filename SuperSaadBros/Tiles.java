@@ -81,11 +81,6 @@ public class Tiles {
         tilesSize++;
     }
 
-    public static Sprite getsprite()
-    {
-        return this.sprite;
-    }
-
     // Creates a new tile
     public static void addPipe(double x, double y, double w, double h) {
         Sprite tile = new Sprite(x, y, w, h, PipeImage);
